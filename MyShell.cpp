@@ -286,7 +286,7 @@ void GetSrcDataFromShell(PVOID pFileBufferShell, PVOID* FileBufferSrc, PDWORD Fi
 	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + IMAGE_SIZEOF_NT_OPTIONAL_HEADER);
 
 
-	// (1) 定为到SHELL文件的最后一个节	
+	// (1) 定位到SHELL文件的最后一个节	
 	*FileBufferSrc = (PVOID)((DWORD)pFileBufferShell + ((PIMAGE_SECTION_HEADER)&pSectionHeader[pPEHeader->NumberOfSections-1])->PointerToRawData);
 	XorDecodeAAA((char*)(*FileBufferSrc),((PIMAGE_SECTION_HEADER)&pSectionHeader[pPEHeader->NumberOfSections-1])->SizeOfRawData);
 	pDosHeader = (PIMAGE_DOS_HEADER)*FileBufferSrc;
